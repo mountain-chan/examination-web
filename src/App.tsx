@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
 import Layout from "./components/layout/Layout";
+import Questions from "./components/questions/Questions";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 import Home from "./pages/Home";
 
@@ -23,7 +24,7 @@ function App() {
           </Route>
 
           <Route path="/home" exact>
-            <Home />
+            <Questions />
           </Route>
 
           <Route path="*">

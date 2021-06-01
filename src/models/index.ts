@@ -1,6 +1,15 @@
-export type ItemModel = {
+export type UserModel = {
   id: string;
-  name: string;
-  amount: number;
-  price: number;
+  username: string;
+  displayName: string;
+  point: number;
+};
+
+export type QuestionModel = {
+  id: string;
+  question: string;
+  code: string;
+  options: string[];
+  correctAnswer: string;
+  answer: string;
 };

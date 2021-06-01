@@ -1,7 +1,3 @@
-import { configureStore } from "@reduxjs/toolkit";
-
-const store = configureStore({
-  reducer: {},
-});
-
-export default store;
+export { authActions } from "./auth-silce";
+export { questionActions } from "./questions-silce";
+export { currentIndexActions } from "./current-index-slice";
