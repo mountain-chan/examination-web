@@ -12,9 +12,17 @@ const questionsSlice = createSlice({
       const questions = action.payload;
       state = questions;
     },
-    updateAnswer(state, action: { payload: { indexQuestion: number; answer: string } }) {
+    updateOneAnswer(state, action: { payload: { indexQuestion: number; answer: string } }) {
       const { indexQuestion, answer } = action.payload;
-      state[indexQuestion].answer = answer;
+      state[indexQuestion].answers = [answer];
+    },
+    updateMultiAnswers(state, action: { payload: { indexQuestion: number; option: string; checked: boolean } }) {
+      const { indexQuestion, option, checked } = action.payload;
+      if (checked) {
+        state[indexQuestion].answers.push(option);
+      } else {
+        state[indexQuestion].answers = state[indexQuestion].answers.filter((item) => item !== option);
+      }
     },
   },
 });

@@ -1,0 +1,27 @@
+.mainLeft {
+  width: 40rem;
+}
+
+.question {
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.prevBtn {
+  color: #27d8db;
+  margin-right: 4rem;
+}
+
+.nextBtn {
+  background-color: #27d8db !important;
+  color: white;
+}
+
+.markBtn {
+  color: #ee6f58;
+}

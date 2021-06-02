@@ -3,8 +3,8 @@ import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
 import Layout from "./components/layout/Layout";
 import Questions from "./components/questions/Questions";
+import RightMenu from "./components/rightMenu/RightMenu";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
-import Home from "./pages/Home";
 
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
@@ -24,7 +24,10 @@ function App() {
           </Route>
 
           <Route path="/home" exact>
-            <Questions />
+            <div className="wraper">
+              <Questions />
+              <RightMenu />
+            </div>
           </Route>
 
           <Route path="*">

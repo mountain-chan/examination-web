@@ -5,11 +5,18 @@ export type UserModel = {
   point: number;
 };
 
+export type OptionModel = {
+  checked: boolean;
+  text: string;
+};
+
 export type QuestionModel = {
   id: string;
   question: string;
   code: string;
   options: string[];
   correctAnswer: string;
-  answer: string;
+  answers: string[];
+  marked: boolean;
+  multiAnswers: boolean;
 };

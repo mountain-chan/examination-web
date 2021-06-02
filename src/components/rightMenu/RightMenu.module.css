@@ -1,0 +1,76 @@
+.rightMenu {
+  max-height: 75vh;
+  overflow-y: auto;
+  width: 21rem;
+  padding: 10px;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+.rightMenu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.rightMenu::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #b5b6b700;
+}
+
+.rightMenu::-webkit-scrollbar-thumb {
+  background-color: #c2c3c4ff;
+}
+
+.topNote {
+  display: flex;
+  justify-content: space-between;
+}
+
+.noteElement {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.noteElement1 {
+  height: 100%;
+}
+
+.smallCircle {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 8px;
+}
+
+.top {
+  margin: 0 8px;
+}
+
+.bigCircle {
+  height: 35px;
+  width: 35px;
+  background-color: #d0cee2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.answered {
+  background-color: #6a197e;
+  color: #f8f8f8;
+}
+
+.marked {
+  background-color: #ee6f58;
+}
+
+.notAnswered {
+  background-color: #d0cee2;
+}
+
+.listQuestions {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initIndex: number = 6;
+const initIndex: number = 0;
 
 const currentIndexSlice = createSlice({
   name: "currentIndex",
