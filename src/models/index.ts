@@ -5,9 +5,10 @@ export type UserModel = {
   point: number;
 };
 
-export type OptionModel = {
-  checked: boolean;
-  text: string;
+export type TimerModel = {
+  seconds: number;
+  isFinished: boolean;
+  isRunning: boolean;
 };
 
 export type QuestionModel = {
@@ -15,7 +16,7 @@ export type QuestionModel = {
   question: string;
   code: string;
   options: string[];
-  correctAnswer: string;
+  correctAnswer: string[];
   answers: string[];
   marked: boolean;
   multiAnswers: boolean;

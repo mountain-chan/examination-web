@@ -48,7 +48,7 @@ const Question: React.FC<Props> = (props) => {
           <div className={classes.option} key={index}>
             {item.multiAnswers ? (
               <input
-                style={{ marginRight: 6 }}
+                className={classes.input}
                 onChange={onCheckboxChangeValue}
                 type="checkbox"
                 value={option}
@@ -57,7 +57,7 @@ const Question: React.FC<Props> = (props) => {
               />
             ) : (
               <input
-                style={{ marginRight: 6 }}
+                className={classes.input}
                 onChange={onRadioChangeValue}
                 type="radio"
                 value={option}

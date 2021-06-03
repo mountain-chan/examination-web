@@ -7,6 +7,7 @@ import classes from "./RightMenu.module.css";
 const RightMenu: React.FC = (props) => {
   const dispatch = useDispatch();
   const questions: QuestionModel[] = useSelector((state: any) => state.questions);
+  const currentIndex: number = useSelector((state: any) => state.currentIndex);
 
   const onClickHandler = (index: number) => {
     dispatch(currentIndexActions.updateCurrentIndex(index));
@@ -41,7 +42,9 @@ const RightMenu: React.FC = (props) => {
           <Circle
             onClick={() => onClickHandler(index)}
             key={item.id}
-            className={`${classes.bigCircle} ${item.answers.length > 0 ? classes.answered : ""}`}
+            className={`${classes.bigCircle} ${
+              item.marked ? classes.marked : item.answers.length > 0 ? classes.answered : ""
+            } ${currentIndex === index ? classes.activated : ""}`}
           >
             {index + 1}
           </Circle>

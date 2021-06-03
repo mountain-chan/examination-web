@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { QuestionModel } from "../../models";
-import { currentIndexActions } from "../../store";
+import { currentIndexActions, questionActions } from "../../store";
 import Question from "../question/Question";
 import classes from "./Questions.module.css";
 import Prism from "prismjs";
@@ -13,6 +13,9 @@ const Questions: React.FC = (props) => {
   const dispatch = useDispatch();
   const questions: QuestionModel[] = useSelector((state: any) => state.questions);
   const currentIndex: number = useSelector((state: any) => state.currentIndex);
+
+  const currentQuestion = questions[currentIndex];
+  const markedBtnText = questions[currentIndex].marked ? "Bỏ đánh dấu" : "Đánh dấu";
 
   useEffect(() => {
     Prism.highlightAll();
@@ -30,12 +33,18 @@ const Questions: React.FC = (props) => {
     }
   };
 
-  const onClickMarkBtn = () => {};
+  const onClickMarkBtn = () => {
+    const payload = {
+      indexQuestion: currentIndex,
+      marked: !currentQuestion.marked,
+    };
+    dispatch(questionActions.updateMarked(payload));
+  };
 
   return (
     <div className={classes.mainLeft}>
       <p className={classes.question}>Câu hỏi số {currentIndex + 1}: </p>
-      <Question index={currentIndex} item={questions[currentIndex]} />
+      <Question index={currentIndex} item={currentQuestion} />
 
       <div className={classes.actions}>
         <div>
@@ -50,7 +59,7 @@ const Questions: React.FC = (props) => {
 
         <Button disabled={false} className={classes.markBtn} onClick={onClickMarkBtn}>
           <i className="fas fa-bookmark" style={{ marginRight: 6 }}></i>
-          Đánh dấu
+          {markedBtnText}
         </Button>
       </div>
     </div>

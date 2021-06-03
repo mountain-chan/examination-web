@@ -1,42 +1,21 @@
-import React, { Suspense } from "react";
-import { Redirect, Route, Switch } from "react-router";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./App.css";
 import Layout from "./components/layout/Layout";
-import Questions from "./components/questions/Questions";
-import RightMenu from "./components/rightMenu/RightMenu";
-import LoadingSpinner from "./components/UI/LoadingSpinner";
-
-const NotFound = React.lazy(() => import("./pages/NotFound"));
+import Exams from "./pages/Exams";
+import Home from "./pages/Home";
+import Prism from "prismjs";
 
 function App() {
-  return (
-    <Layout>
-      <Suspense
-        fallback={
-          <div className="centered">
-            <LoadingSpinner />
-          </div>
-        }
-      >
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/home" />
-          </Route>
+  const timerRunning: boolean = useSelector((state: any) => state.timer.isRunning);
+  const timerFinished: boolean = useSelector((state: any) => state.timer.isFinished);
 
-          <Route path="/home" exact>
-            <div className="wraper">
-              <Questions />
-              <RightMenu />
-            </div>
-          </Route>
+  useEffect(() => {
+    if (!timerFinished) return;
+    Prism.highlightAll();
+  }, [timerFinished]);
 
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
-      </Suspense>
-    </Layout>
-  );
+  return <Layout>{!timerRunning && !timerFinished ? <Home /> : <Exams />}</Layout>;
 }
 
 export default App;

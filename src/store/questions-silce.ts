@@ -24,6 +24,10 @@ const questionsSlice = createSlice({
         state[indexQuestion].answers = state[indexQuestion].answers.filter((item) => item !== option);
       }
     },
+    updateMarked(state, action: { payload: { indexQuestion: number; marked: boolean } }) {
+      const { indexQuestion, marked } = action.payload;
+      state[indexQuestion].marked = marked;
+    },
   },
 });
 
