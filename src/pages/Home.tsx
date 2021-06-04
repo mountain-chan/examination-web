@@ -41,23 +41,28 @@ const Home: React.FC = (props) => {
       </p>
       <p> Thời gian làm bài thi có hạn, chú ý thời gian hợp lý cho mỗi câu để đạt kết quả tốt nhất.</p>
 
-      <div className="centered">
-        {/* <Button disabled={false} className="greenBtn" onClick={onClickBtnHandler}>
-          Bắt đầu thi
-        </Button>
-        <span>hoặc</span> */}
+      <div className="centered Home-wrapper-actions">
+        <div className="Home-wrapper-btn">
+          <Button disabled={false} className="greenBtn" onClick={onClickBtnHandler}>
+            Bắt đầu thi
+          </Button>
+        </div>
 
-        <GoogleLogin
-          clientId="932731658185-s80k0demqn8gr9tfvbnar3fk8l5el9l8.apps.googleusercontent.com"
-          render={(renderProps) => (
-            <Button className="greenBtn" onClick={renderProps.onClick}>
-              Bắt đầu với tài khoản Google
-            </Button>
-          )}
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
+        <div>hoặc</div>
+
+        <div className="Home-wrapper-btn">
+          <GoogleLogin
+            clientId="932731658185-s80k0demqn8gr9tfvbnar3fk8l5el9l8.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <Button className="greenBtn" onClick={renderProps.onClick}>
+                Bắt đầu với tài khoản Google
+              </Button>
+            )}
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
       </div>
     </div>
   );

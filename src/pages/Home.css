@@ -6,6 +6,10 @@
   font-weight: 600;
 }
 
-.Home-wrapper div {
+.Home-wrapper-actions {
   margin-top: 2rem;
+}
+
+.Home-wrapper-btn {
+  margin: 1rem 0;
 }
