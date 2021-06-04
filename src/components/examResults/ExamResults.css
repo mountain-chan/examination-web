@@ -1,0 +1,20 @@
+.ExamResults-logo {
+  font-size: 8rem;
+  font-weight: 900;
+}
+
+.ExamResults-item {
+  margin: 3rem 0;
+}
+
+.ExamResults-top p span {
+  font-weight: 600;
+}
+
+.ExamResults-top2 {
+  margin-top: 80px;
+}
+
+.ExamResults-top2 span {
+  font-weight: 600;
+}

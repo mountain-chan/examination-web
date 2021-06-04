@@ -8,6 +8,7 @@ const RightMenu: React.FC = (props) => {
   const dispatch = useDispatch();
   const questions: QuestionModel[] = useSelector((state: any) => state.questions);
   const currentIndex: number = useSelector((state: any) => state.currentIndex);
+  const timerFinished: boolean = useSelector((state: any) => state.timer.isFinished);
 
   const onClickHandler = (index: number) => {
     dispatch(currentIndexActions.updateCurrentIndex(index));
@@ -39,15 +40,27 @@ const RightMenu: React.FC = (props) => {
 
       <div className={classes.listQuestions}>
         {questions.map((item, index) => (
-          <Circle
-            onClick={() => onClickHandler(index)}
-            key={item.id}
-            className={`${classes.bigCircle} ${
-              item.marked ? classes.marked : item.answers.length > 0 ? classes.answered : ""
-            } ${currentIndex === index ? classes.activated : ""}`}
-          >
-            {index + 1}
-          </Circle>
+          <div key={item.id} className={classes.item}>
+            {timerFinished ? (
+              <div className={classes.icon}>
+                {JSON.stringify(item.correctAnswer) === JSON.stringify(item.answers) ? (
+                  <i className="fas fa-check color2" />
+                ) : (
+                  <i className="fas fa-times color3" />
+                )}
+              </div>
+            ) : (
+              ""
+            )}
+            <Circle
+              onClick={() => onClickHandler(index)}
+              className={`${classes.bigCircle} ${
+                item.marked ? classes.marked : item.answers.length > 0 ? classes.answered : ""
+              } ${currentIndex === index ? classes.activated : ""}`}
+            >
+              {index + 1}
+            </Circle>
+          </div>
         ))}
       </div>
     </div>

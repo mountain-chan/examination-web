@@ -6,6 +6,8 @@
   -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
   box-shadow: 3px 3px 5px 4px #ccc;
+  position: sticky;
+  top: 13vh;
 }
 .rightMenu::-webkit-scrollbar {
   width: 8px;
@@ -28,7 +30,7 @@
 .noteElement {
   display: flex;
   align-items: center;
-  padding: 5px 0;
+  margin: 8px 0;
 }
 
 .noteElement1 {
@@ -78,4 +80,19 @@
   display: flex;
   flex-wrap: wrap;
   margin: 1rem 0;
+}
+
+.item {
+  position: relative;
+  margin: 0 6px;
+}
+
+.item i {
+  font-size: 0.8rem;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

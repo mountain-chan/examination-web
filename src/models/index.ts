@@ -1,8 +1,9 @@
 export type UserModel = {
-  id: string;
-  username: string;
-  displayName: string;
+  email: string;
+  name: string;
+  imageUrl: string;
   point: number;
+  timeSpend: number;
 };
 
 export type TimerModel = {

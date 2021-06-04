@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserModel } from "../models";
-import { generateId } from "../utils";
 
-const initUser: UserModel = { id: generateId(), username: "mountain-chan", displayName: "Chan Ly", point: 0 };
+const initUser: UserModel = {
+  email: "",
+  name: "",
+  imageUrl: "",
+  point: 0,
+  timeSpend: 0,
+};
 
 const authSlice = createSlice({
   name: "auth",

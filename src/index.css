@@ -21,11 +21,11 @@ code {
 }
 
 .centered {
-  margin: 3rem auto;
+  /* margin: 3rem auto; */
   text-align: center;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .focused {
@@ -33,36 +33,24 @@ code {
   font-weight: bold;
   color: white;
 }
-/* 
-.btn {
-  text-decoration: none;
-  background-color: teal;
+
+.color1 {
+  color: #d0cee2;
+}
+
+.color2 {
+  color: #88dfdf;
+}
+
+.color3 {
+  color: #ee6f58;
+}
+
+.fontBold {
+  font-weight: 600;
+}
+
+.greenBtn {
+  background-color: #27d8db !important;
   color: white;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid teal;
-  cursor: pointer;
 }
-
-.btn:hover,
-.btn:active {
-  background-color: #11acac;
-  border-color: #11acac;
-}
-
-.btn--flat {
-  cursor: pointer;
-  font: inherit;
-  color: teal;
-  border: none;
-  background-color: none;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-}
-
-.btn--flat:hover,
-.btn--flat:active {
-  background-color: teal;
-  color: white;
-} */

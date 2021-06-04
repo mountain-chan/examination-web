@@ -1,9 +1,9 @@
 import classes from "./Button.module.css";
 
 interface Props {
-  className: string;
-  disabled: boolean;
-  onClick: () => void;
+  className?: string;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
 const Button: React.FC<Props> = (props) => {

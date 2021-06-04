@@ -52,13 +52,20 @@ const MainNavigation: React.FC = (props) => {
     </div>
   ) : (
     <div>
-      Thời gian làm bài: <span style={{ marginLeft: 6, fontWeight: 600 }}>90 phút</span>
+      Thời gian làm bài: <span style={{ marginLeft: 6, fontWeight: 600 }}>30 phút</span>
     </div>
   );
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>{user.displayName}</div>
+      {user.email !== "" ? (
+        <div className={classes.wrapperInfo}>
+          <img className={classes.avatar} src={user.imageUrl} alt="avatar" />
+          <span className={classes.username}>{user.name}</span>
+        </div>
+      ) : (
+        ""
+      )}
 
       <div>Kiểm tra Python cơ bản</div>
 

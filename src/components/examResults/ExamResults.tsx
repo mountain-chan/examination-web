@@ -1,10 +1,14 @@
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { QuestionModel } from "../../models";
 import DetailedResult from "./DetailedResult";
-// import classes from "./ExamResults.module.css";
+import "./ExamResults.css";
 
 const ExamResults: React.FC = (props) => {
   const questions: QuestionModel[] = useSelector((state: any) => state.questions);
+  const currentIndex: number = useSelector((state: any) => state.currentIndex);
+
+  const myRef = useRef<any[]>(Array.from({ length: 20 }));
 
   const correctAnswers = questions.filter(
     (item) => JSON.stringify(item.answers) === JSON.stringify(item.correctAnswer)
@@ -12,35 +16,43 @@ const ExamResults: React.FC = (props) => {
 
   const correctPersent = (correctAnswers / questions.length) * 100;
 
+  useEffect(() => {
+    myRef.current[currentIndex].scrollIntoView({ block: "center", behavior: "smooth" });
+  }, [currentIndex]);
+
   return (
     <div>
-      <div>
-        <h1>
-          {correctAnswers}/{questions.length}
-        </h1>
-        <p>
-          Bạn trả lời đúng{" "}
-          <span>
+      <div className="centered">
+        <div className="ExamResults-top">
+          <span className="ExamResults-logo">
             {correctAnswers}/{questions.length}
-          </span>{" "}
-          ({correctPersent}%) câu hỏi trong bài kiểm tra này
-        </p>
-      </div>
+          </span>
+          <p>
+            Bạn trả lời đúng{" "}
+            <span>
+              {correctAnswers}/{questions.length}
+            </span>{" "}
+            ({correctPersent}%) câu hỏi trong bài kiểm tra này
+          </p>
+        </div>
 
-      <div>
-        <div>Chi tiết bài kiểm tra</div>
-        <p>(Chúng tôi chỉ hiển thị đáp án bạn đã chọn, không hiển thị đáp án đúng của hệ thống)</p>
+        <div className="ExamResults-top2">
+          <span>Chi tiết bài kiểm tra</span>
+          <p>(Chúng tôi chỉ hiển thị đáp án bạn đã chọn, không hiển thị đáp án đúng của hệ thống)</p>
+        </div>
       </div>
 
       <div>
         {questions.map((item, index) => (
-          <div key={item.id}>
-            {JSON.stringify(item.correctAnswer) === JSON.stringify(item.answers) ? (
-              <i className="fas fa-check" />
-            ) : (
-              <i className="fas fa-times" />
-            )}{" "}
-            Câu {index + 1}
+          <div ref={(r) => (myRef.current[index] = r)} className="ExamResults-item" key={item.id}>
+            <div className="fontBold">
+              {JSON.stringify(item.correctAnswer) === JSON.stringify(item.answers) ? (
+                <i className="fas fa-check color2" />
+              ) : (
+                <i className="fas fa-times color3" />
+              )}{" "}
+              Câu {index + 1}
+            </div>
             <DetailedResult item={item} />
           </div>
         ))}

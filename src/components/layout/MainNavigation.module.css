@@ -14,31 +14,18 @@
   color: white;
 }
 
-.logo {
-  font-size: 2rem;
-  /* color: white !important; */
-  text-decoration: none !important;
-}
-
-.nav ul {
-  list-style: none;
+.wrapperInfo {
   display: flex;
-  margin: 0;
-  padding: 0;
+  align-items: center;
 }
 
-.nav li {
-  margin-left: 1.5rem;
-  font-size: 1.25rem;
+.username {
+  font-size: 1.8rem;
+  margin-left: 15px;
 }
 
-.nav a {
-  text-decoration: none;
-  color: #88dfdf;
-}
-
-.nav a:hover,
-.nav a:active,
-.nav a.active {
-  color: #e6fcfc;
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
 }

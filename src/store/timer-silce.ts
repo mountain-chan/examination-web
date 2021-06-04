@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TimerModel } from "../models";
 
 const initialTimer: TimerModel = {
-  seconds: 10,
+  seconds: 1800,
   isFinished: false,
   isRunning: false,
 };

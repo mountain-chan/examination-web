@@ -1,0 +1,11 @@
+.Home-wrapper {
+  margin: 20vh 9vh;
+}
+
+.Home-wrapper p span {
+  font-weight: 600;
+}
+
+.Home-wrapper div {
+  margin-top: 2rem;
+}
