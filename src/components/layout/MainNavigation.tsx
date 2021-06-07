@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TimerModel, UserModel } from "../../models";
-import { timerActions } from "../../store";
+import { currentIndexActions, timerActions } from "../../store";
 import Button from "../UI/Button";
 import classes from "./MainNavigation.module.css";
 
@@ -14,6 +14,7 @@ const MainNavigation: React.FC = (props) => {
   const onClickSubmit = () => {
     dispatch(timerActions.updateFinished(true));
     dispatch(timerActions.updateRunning(false));
+    dispatch(currentIndexActions.updateCurrentIndex(-1));
   };
 
   useEffect(() => {

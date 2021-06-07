@@ -17,6 +17,7 @@ const ExamResults: React.FC = (props) => {
   const correctPersent = (correctAnswers / questions.length) * 100;
 
   useEffect(() => {
+    if (currentIndex === -1) return;
     myRef.current[currentIndex].scrollIntoView({ block: "center", behavior: "smooth" });
   }, [currentIndex]);
 
