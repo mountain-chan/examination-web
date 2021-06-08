@@ -1,6 +1,7 @@
 {
   "name": "examination-web",
   "version": "0.1.0",
+  "homepage": "https://mountain-chan.github.io/examination-web/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
