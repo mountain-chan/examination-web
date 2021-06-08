@@ -1,9 +1,5 @@
 import { QuestionModel } from "./models";
 
-export const generateId = () => {
-  return (new Date().getTime() + Math.random()).toString();
-};
-
 export const QUESTIONS: QuestionModel[] = [
   {
     id: "8f06bbc6-c2a6-11eb-8084-00e04d380507",
