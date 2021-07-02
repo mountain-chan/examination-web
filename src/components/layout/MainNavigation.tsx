@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { rest } from "../../config";
 import { QuestionModel, TimerModel, UserModel } from "../../models";
-import { currentIndexActions, questionActions, timerActions } from "../../store";
+import { questionActions, timerActions } from "../../store";
 import { callApi } from "../../utils";
 import Button from "../UI/Button";
 import classes from "./MainNavigation.module.css";
@@ -14,58 +14,57 @@ const MainNavigation: React.FC = (props) => {
 
   const dispatch = useDispatch();
 
-  const onClickSubmit = async () => {
-    const questionsAnswer: any = questions.map((item: QuestionModel) => ({
-      id: item.id,
-      answers: item.answers,
-    }));
-
-    const body = {
-      email: user.email,
-      name: user.name,
-      imageUrl: user.imageUrl,
-      time_spend: 1800 - timer.seconds,
-      total_time: 1800,
-      language: "python",
-      answers: questionsAnswer,
-    };
-
-    const response: any = await callApi({
-      api: rest.finishExam(),
-      method: "post",
-      body: body,
-    });
-    const { status, data } = response;
-
-    if (status) {
-      const reuslts: QuestionModel[] = questions.map((item: QuestionModel) => ({
+  const callFinishExam = useCallback(
+    async (timeRemaining: number) => {
+      const questionsAnswer: any = questions.map((item: QuestionModel) => ({
         id: item.id,
-        question: item.question,
-        code: item.code,
-        options: item.options,
-        multiAnswers: item.multiAnswers,
         answers: item.answers,
-        marked: item.marked,
-        isCorrect: data.find((i: any) => i.id === item.id)?.isCorrect || false,
       }));
 
-      dispatch(questionActions.updateQuestions(reuslts));
-    } else {
-      alert("Backend Failed");
-    }
+      const body = {
+        email: user.email,
+        name: user.name,
+        imageUrl: user.imageUrl,
+        time_spend: 1800 - timeRemaining,
+        total_time: 1800,
+        language: "python",
+        answers: questionsAnswer,
+      };
 
+      const response: any = await callApi({
+        api: rest.finishExam(),
+        method: "post",
+        body: body,
+      });
+      const { status, data } = response;
+
+      if (status) {
+        const reuslts: QuestionModel[] = questions.map((item: QuestionModel) => ({
+          ...item,
+          isCorrect: data.find((i: any) => i.id === item.id)?.isCorrect || false,
+        }));
+
+        dispatch(questionActions.updateQuestions(reuslts));
+      } else {
+        alert("Backend Failed");
+      }
+    },
+    [user, questions, dispatch]
+  );
+
+  const onClickSubmit = async () => {
+    callFinishExam(timer.seconds);
     dispatch(timerActions.updateFinished(true));
     dispatch(timerActions.updateRunning(false));
-    dispatch(currentIndexActions.updateCurrentIndex(-1));
   };
 
   useEffect(() => {
     if (timer.seconds <= 0) {
+      callFinishExam(0);
       dispatch(timerActions.updateFinished(true));
       dispatch(timerActions.updateRunning(false));
-      dispatch(currentIndexActions.updateCurrentIndex(-1));
     }
-  }, [timer.seconds, dispatch]);
+  }, [timer.seconds, dispatch, callFinishExam]);
 
   useEffect(() => {
     if (!timer.isRunning) {
