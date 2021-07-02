@@ -17,8 +17,8 @@ export type QuestionModel = {
   question: string;
   code: string;
   options: string[];
-  correctAnswer: string[];
+  multiAnswers: boolean;
   answers: string[];
   marked: boolean;
-  multiAnswers: boolean;
+  isCorrect: boolean;
 };

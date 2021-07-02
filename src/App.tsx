@@ -5,6 +5,10 @@ import Layout from "./components/layout/Layout";
 import Exams from "./pages/Exams";
 import Home from "./pages/Home";
 import Prism from "prismjs";
+import axios from "axios";
+import { BASE_URL } from "./config";
+
+axios.defaults.baseURL = BASE_URL;
 
 function App() {
   const timerRunning: boolean = useSelector((state: any) => state.timer.isRunning);

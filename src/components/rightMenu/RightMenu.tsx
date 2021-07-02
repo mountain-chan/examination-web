@@ -43,11 +43,7 @@ const RightMenu: React.FC = (props) => {
           <div key={item.id} className={classes.item}>
             {timerFinished ? (
               <div className={classes.icon}>
-                {JSON.stringify(item.correctAnswer) === JSON.stringify(item.answers) ? (
-                  <i className="fas fa-check color2" />
-                ) : (
-                  <i className="fas fa-times color3" />
-                )}
+                {item.isCorrect ? <i className="fas fa-check color2" /> : <i className="fas fa-times color3" />}
               </div>
             ) : (
               ""

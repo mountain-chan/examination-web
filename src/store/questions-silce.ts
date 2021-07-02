@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { QuestionModel } from "../models";
-import { QUESTIONS } from "../utils";
 
-const initQuestions: QuestionModel[] = QUESTIONS;
+const initQuestions: QuestionModel[] = [];
 
 const questionsSlice = createSlice({
   name: "questions",
@@ -11,6 +10,7 @@ const questionsSlice = createSlice({
     updateQuestions(state, action: { payload: QuestionModel[] }) {
       const questions = action.payload;
       state = questions;
+      return state;
     },
     updateOneAnswer(state, action: { payload: { indexQuestion: number; answer: string } }) {
       const { indexQuestion, answer } = action.payload;

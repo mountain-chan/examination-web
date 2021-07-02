@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import Button from "../components/UI/Button";
-import { authActions, timerActions } from "../store";
+import { authActions, questionActions, timerActions } from "../store";
 import "./Home.css";
 import GoogleLogin from "react-google-login";
-import { UserModel } from "../models";
+import { QuestionModel, UserModel } from "../models";
+import { callApi } from "../utils";
+import { rest } from "../config";
 
 const Home: React.FC = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +14,7 @@ const Home: React.FC = (props) => {
     dispatch(timerActions.updateRunning(true));
   };
 
-  const responseGoogle = (response: any) => {
+  const responseGoogle = async (response: any) => {
     const userProfile = response.profileObj;
     if (userProfile) {
       const userInfo: UserModel = {
@@ -22,8 +24,33 @@ const Home: React.FC = (props) => {
         point: 0,
         timeSpend: 0,
       };
-      dispatch(authActions.updateAuth(userInfo));
-      onClickBtnHandler();
+
+      const response: any = await callApi({
+        api: rest.getQuestions(),
+        method: "get",
+      });
+      const { status, data } = response;
+
+      if (status) {
+        const questions: QuestionModel[] = data.map((item: any) => ({
+          id: item.id,
+          question: item?.question,
+          code: item?.code,
+          options: item?.options,
+          multiAnswers: item?.multiAnswers,
+          answers: [],
+          marked: false,
+          isCorrect: false,
+        }));
+
+        dispatch(authActions.updateAuth(userInfo));
+        dispatch(questionActions.updateQuestions(questions));
+        onClickBtnHandler();
+      } else {
+        alert("Backend Failed");
+      }
+    } else {
+      alert("Không thể xác thực email, vui lòng nhập lại email của bạn");
     }
   };
 
@@ -41,14 +68,14 @@ const Home: React.FC = (props) => {
       </p>
       <p> Thời gian làm bài thi có hạn, chú ý thời gian hợp lý cho mỗi câu để đạt kết quả tốt nhất.</p>
 
-      <div className="centered Home-wrapper-actions">
-        <div className="Home-wrapper-btn">
+      <div className="Home-wrapper-actions">
+        {/* <div className="Home-wrapper-btn">
           <Button disabled={false} className="greenBtn" onClick={onClickBtnHandler}>
             Bắt đầu thi
           </Button>
         </div>
 
-        <div>hoặc</div>
+        <div>hoặc</div> */}
 
         <div className="Home-wrapper-btn">
           <GoogleLogin

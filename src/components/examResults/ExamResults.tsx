@@ -10,9 +10,7 @@ const ExamResults: React.FC = (props) => {
 
   const myRef = useRef<any[]>(Array.from({ length: 20 }));
 
-  const correctAnswers = questions.filter(
-    (item) => JSON.stringify(item.answers) === JSON.stringify(item.correctAnswer)
-  ).length;
+  const correctAnswers = questions.filter((item) => item.isCorrect).length;
 
   const correctPersent = (correctAnswers / questions.length) * 100;
 
@@ -47,12 +45,8 @@ const ExamResults: React.FC = (props) => {
         {questions.map((item, index) => (
           <div ref={(r) => (myRef.current[index] = r)} className="ExamResults-item" key={item.id}>
             <div className="fontBold">
-              {JSON.stringify(item.correctAnswer) === JSON.stringify(item.answers) ? (
-                <i className="fas fa-check color2" />
-              ) : (
-                <i className="fas fa-times color3" />
-              )}{" "}
-              Câu {index + 1}
+              {item.isCorrect ? <i className="fas fa-check color2" /> : <i className="fas fa-times color3" />} Câu{" "}
+              {index + 1}
             </div>
             <DetailedResult item={item} />
           </div>
