@@ -5,6 +5,7 @@
 
 .ExamResults-item {
   margin: 3rem 0;
+  max-width: 43rem;
 }
 
 .ExamResults-top p span {
