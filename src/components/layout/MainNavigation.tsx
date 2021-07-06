@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, Switch } from "react-router";
 import { rest } from "../../config";
 import { QuestionModel, TimerModel, UserModel } from "../../models";
 import { questionActions, timerActions } from "../../store";
@@ -59,7 +60,7 @@ const MainNavigation: React.FC = (props) => {
   };
 
   useEffect(() => {
-    if (timer.seconds <= 0) {
+    if (timer.seconds === 0) {
       callFinishExam(0);
       dispatch(timerActions.updateFinished(true));
       dispatch(timerActions.updateRunning(false));
@@ -101,18 +102,28 @@ const MainNavigation: React.FC = (props) => {
 
   return (
     <header className={classes.header}>
-      {user.email !== "" ? (
-        <div className={classes.wrapperInfo}>
-          <img className={classes.avatar} src={user.imageUrl} alt="avatar" />
-          <span className={classes.username}>{user.name}</span>
-        </div>
-      ) : (
-        ""
-      )}
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/exams" />
+        </Route>
+        <Route path="/exams" exact>
+          {user.email !== "" ? (
+            <div className={classes.wrapperInfo}>
+              <img className={classes.avatar} src={user.imageUrl} alt="avatar" />
+              <span className={classes.username}>{user.name}</span>
+            </div>
+          ) : (
+            ""
+          )}
+          <div>Kiểm tra Python cơ bản</div>
 
-      <div>Kiểm tra Python cơ bản</div>
+          {timeInfo}
+        </Route>
 
-      {timeInfo}
+        <Route path="/admin" exact>
+          <div>Admin BootAI Exams</div>
+        </Route>
+      </Switch>
     </header>
   );
 };
