@@ -32,7 +32,7 @@ const DetailedResult: React.FC<Props> = (props) => {
             ) : (
               <input readOnly={true} type="radio" value={option} name={item.id} checked={option === item.answers[0]} />
             )}
-            <label>{option}</label>
+            <label style={{ marginLeft: 8 }}>{option}</label>
           </div>
         ))}
       </div>

@@ -25,7 +25,7 @@ const MainNavigation: React.FC = (props) => {
       const body = {
         email: user.email,
         name: user.name,
-        imageUrl: user.imageUrl,
+        image_url: user.imageUrl,
         time_spend: 1800 - timeRemaining,
         total_time: 1800,
         language: "python",

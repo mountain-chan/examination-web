@@ -37,7 +37,7 @@ const Home: React.FC = (props) => {
           question: item?.question,
           code: item?.code,
           options: item?.options,
-          multiAnswers: item?.multiAnswers,
+          multiAnswers: item?.multi_answer,
           answers: [],
           marked: false,
           isCorrect: false,
