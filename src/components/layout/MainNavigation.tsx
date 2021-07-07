@@ -42,7 +42,7 @@ const MainNavigation: React.FC = (props) => {
       if (status) {
         const reuslts: QuestionModel[] = questions.map((item: QuestionModel) => ({
           ...item,
-          isCorrect: data.find((i: any) => i.id === item.id)?.isCorrect || false,
+          isCorrect: data.find((i: any) => i.id === item.id)?.is_correct || false,
         }));
 
         dispatch(questionActions.updateQuestions(reuslts));
